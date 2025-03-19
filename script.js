@@ -15,7 +15,7 @@ let formData = [
     {
         id: "45002ecf-85cf-4852-bc46-529f94a758f5",
         type: "textarea",
-        label: "Sample Textarea",
+        label: "Sample Text area",
         placeholder: "Sample Placeholder"
     },
     {
