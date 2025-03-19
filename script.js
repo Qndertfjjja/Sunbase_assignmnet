@@ -1,4 +1,4 @@
-// Initial form data
+
 let formData = [
     {
         id: "c0ac49c5-871e-4c72-a878-251de465e6b4",
@@ -25,7 +25,7 @@ let formData = [
     }
 ];
 
-// DOM Elements
+
 const formElements = document.getElementById('formElements');
 const components = document.querySelectorAll('.component');
 const saveButton = document.getElementById('saveButton');
@@ -35,19 +35,19 @@ const previewModal = document.getElementById('previewModal');
 const closeModalBtn = document.querySelector('.close-btn');
 const copyHtmlButton = document.getElementById('copyHtmlButton');
 
-// Theme Management
+
 function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark');
     localStorage.setItem('theme', isDark ? 'dark' : 'light');
     
-    // Update theme toggle icon visibility
+    
     const lightIcon = themeToggle.querySelector('.light-icon');
     const darkIcon = themeToggle.querySelector('.dark-icon');
     lightIcon.style.display = isDark ? 'none' : 'inline';
     darkIcon.style.display = isDark ? 'inline' : 'none';
 }
 
-// Initialize theme
+
 if (localStorage.getItem('theme') === 'dark') {
     document.documentElement.classList.add('dark');
     const lightIcon = themeToggle.querySelector('.light-icon');
@@ -58,19 +58,19 @@ if (localStorage.getItem('theme') === 'dark') {
 
 themeToggle.addEventListener('click', toggleTheme);
 
-// Generate unique ID
+
 function generateId() {
     return crypto.randomUUID();
 }
 
-// Create form element
+
 function createFormElement(data) {
     const element = document.createElement('div');
     element.className = 'form-element';
     element.draggable = true;
     element.dataset.id = data.id;
 
-    // Delete button
+   
     const deleteBtn = document.createElement('button');
     deleteBtn.className = 'delete-btn';
     deleteBtn.innerHTML = '×';
@@ -80,7 +80,7 @@ function createFormElement(data) {
     };
     element.appendChild(deleteBtn);
 
-    // Label input
+    
     const labelInput = document.createElement('input');
     labelInput.type = 'text';
     labelInput.value = data.label;
@@ -93,7 +93,7 @@ function createFormElement(data) {
     };
     element.appendChild(labelInput);
 
-    // Create specific element based on type
+   
     switch (data.type) {
         case 'input':
             const input = document.createElement('input');
@@ -118,7 +118,7 @@ function createFormElement(data) {
             });
             element.appendChild(select);
 
-            // Options management
+            
             const optionControls = document.createElement('div');
             optionControls.className = 'option-controls';
             
@@ -178,7 +178,7 @@ function createFormElement(data) {
             break;
     }
 
-    // Drag and drop event listeners
+    
     element.addEventListener('dragstart', (e) => {
         element.classList.add('dragging');
         e.dataTransfer.setData('text/plain', data.id);
@@ -191,7 +191,7 @@ function createFormElement(data) {
     return element;
 }
 
-// Generate preview HTML
+
 function generatePreviewHtml() {
     let html = '<form>\n';
     formData.forEach(data => {
@@ -223,7 +223,7 @@ function generatePreviewHtml() {
     return html;
 }
 
-// Create preview form
+
 function createPreviewForm() {
     const preview = document.getElementById('formPreview');
     preview.innerHTML = '';
@@ -277,7 +277,7 @@ function createPreviewForm() {
     preview.appendChild(form);
 }
 
-// Render form elements
+
 function renderFormElements() {
     formElements.innerHTML = '';
     formData.forEach(element => {
@@ -285,7 +285,7 @@ function renderFormElements() {
     });
 }
 
-// Add new element handlers
+
 components.forEach(component => {
     component.addEventListener('dragstart', (e) => {
         e.dataTransfer.setData('type', component.dataset.type);
@@ -305,7 +305,7 @@ components.forEach(component => {
     });
 });
 
-// Drag and drop functionality
+
 formElements.addEventListener('dragover', (e) => {
     e.preventDefault();
     const afterElement = getDragAfterElement(formElements, e.clientY);
@@ -326,7 +326,7 @@ formElements.addEventListener('drop', (e) => {
     const id = e.dataTransfer.getData('text/plain');
 
     if (type && !id) {
-        // Adding new element
+       
         const newElement = {
             id: generateId(),
             type,
@@ -368,7 +368,7 @@ function getDragAfterElement(container, y) {
     }, { offset: Number.NEGATIVE_INFINITY }).element;
 }
 
-// Preview Modal Management
+
 previewButton.addEventListener('click', () => {
     previewModal.style.display = 'block';
     createPreviewForm();
@@ -385,7 +385,7 @@ window.addEventListener('click', (e) => {
     }
 });
 
-// Copy HTML functionality
+
 copyHtmlButton.addEventListener('click', async () => {
     const htmlContent = generatePreviewHtml();
     try {
@@ -399,10 +399,10 @@ copyHtmlButton.addEventListener('click', async () => {
     }
 });
 
-// Save form data
+
 saveButton.addEventListener('click', () => {
     console.log('Form Data:', JSON.stringify(formData, null, 2));
 });
 
-// Initial render
+
 renderFormElements();
