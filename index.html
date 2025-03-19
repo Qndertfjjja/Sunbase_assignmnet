@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Designer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-left">
+                <h1>Form Designer</h1>
+                <button id="themeToggle" class="theme-toggle">
+                    <span class="light-icon">🌞</span>
+                    <span class="dark-icon">🌙</span>
+                </button>
+            </div>
+            <div class="header-right">
+                <button id="previewButton" class="preview-button">Preview Form</button>
+                <button id="saveButton">Save Form</button>
+            </div>
+        </header>
+        
+        <main>
+            <div class="components-panel">
+                <h2>Components</h2>
+                <div class="component" draggable="true" data-type="input">
+                    <span>Input Field</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <div class="component" draggable="true" data-type="select">
+                    <span>Select Menu</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <div class="component" draggable="true" data-type="textarea">
+                    <span>Text Area</span>
+                    <button class="add-btn">+</button>
+                </div>
+                <div class="component" draggable="true" data-type="checkbox">
+                    <span>Checkbox</span>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+
+            <div class="form-preview">
+                <div id="formElements" class="form-elements"></div>
+            </div>
+        </main>
+
+        <!-- Preview Modal -->
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Form Preview</h2>
+                    <button class="close-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div id="formPreview"></div>
+                    <div class="html-preview">
+                        <h3>Generated HTML</h3>
+                        <div class="code-container">
+                            <pre><code id="generatedHtml"></code></pre>
+                            <button id="copyHtmlButton" class="copy-btn">Copy HTML</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
